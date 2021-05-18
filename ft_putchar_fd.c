@@ -6,11 +6,11 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 19:48:26 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/10/29 19:49:33 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:14:18 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

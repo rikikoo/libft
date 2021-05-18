@@ -6,13 +6,13 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 17:41:09 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/05 21:46:50 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:19:48 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-int		ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	if (c >= 0 && c < 128)
 		return (1);

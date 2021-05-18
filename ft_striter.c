@@ -6,11 +6,11 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 18:05:11 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 16:24:09 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:15:27 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_striter(char *s, void (*f)(char*))
 {

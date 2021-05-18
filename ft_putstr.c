@@ -6,11 +6,11 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 13:40:06 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 16:21:28 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:14:50 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putstr(char const *s)
 {

@@ -6,7 +6,7 @@
 #    By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 11:43:31 by rkyttala          #+#    #+#              #
-#    Updated: 2020/08/29 05:53:25 by rkyttala         ###   ########.fr        #
+#    Updated: 2020/09/07 19:29:21 by rkyttala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ ARCC = ar
 
 ARFLAGS = rc
 
-SOURCES = $(wildcard *.c)
+SOURCES = $(wildcard *.c) ft_printf/csp.c ft_printf/di.c ft_printf/octal.c \
+			ft_printf/unsigned.c ft_printf/hexadecimal.c ft_printf/utils.c \
+			ft_printf/ft_printf.c ft_printf/parsers.c ft_printf/validate.c \
+			ft_printf/float.c
 
 OBJECTS = $(SOURCES:.c=.o)
-
-INCLUDES = libft.h get_next_line.h
 
 MAKEFLAGS += --silent
 
@@ -34,7 +35,7 @@ $(NAME): $(OBJECTS)
 	$(ARCC) $(ARFLAGS) $(NAME) $(OBJECTS)
 
 $(OBEJCTS):
-	$(CC) $(CFLAGS) -c $(SOURCES) -I $(INCLUDES)
+	$(CC) $(CFLAGS) -I includes -c $(SOURCES)
 
 clean:
 	rm -f $(OBJECTS)
@@ -44,4 +45,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: $(NAME) all clean fclean re
+.PHONY: clean fclean

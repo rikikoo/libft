@@ -6,11 +6,11 @@
 /*   By: rikikytt <rikikytt@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 18:26:28 by rikikytt          #+#    #+#             */
-/*   Updated: 2020/08/25 22:03:53 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:14:41 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putnstr(const char *str, int n)
 {

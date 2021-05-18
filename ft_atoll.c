@@ -6,11 +6,11 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 22:41:37 by rkyttala          #+#    #+#             */
-/*   Updated: 2020/08/20 23:59:04 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:12:19 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 long long	ft_atoll(const char *str)
 {

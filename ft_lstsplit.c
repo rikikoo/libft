@@ -6,13 +6,13 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:12:32 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/07 14:08:24 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:38:01 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-t_list		*ft_lstsplit(char **arr)
+t_list	*ft_lstsplit(char **arr)
 {
 	int			i;
 	t_list		*head;

@@ -6,15 +6,15 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 10:56:12 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 16:32:45 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:26:45 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	if (!s1 || !s1)

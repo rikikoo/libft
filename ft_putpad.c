@@ -6,11 +6,11 @@
 /*   By: rikikytt <rikikytt@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 23:42:51 by rikikytt          #+#    #+#             */
-/*   Updated: 2020/08/27 22:00:28 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:14:44 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putpad(int len, char c)
 {

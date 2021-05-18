@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 14:13:48 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/12/13 19:38:28 by rkyttala         ###   ########.fr       */
+/*   Created: 2021/03/30 13:22:25 by rkyttala          #+#    #+#             */
+/*   Updated: 2021/05/02 17:51:33 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 8
-# define FD_MAX 4864
+#include "includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
+int	ft_lstlen(void **lst)
+{
+	size_t	i;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	while (lst[i] != NULL)
+	{
+		i++;
+	}
+	return (i);
+}

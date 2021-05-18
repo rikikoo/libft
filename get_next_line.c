@@ -6,13 +6,13 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 18:21:41 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/12/13 19:38:07 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:24:39 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "includes/get_next_line.h"
 
-static int		find_eol(char **str, char **line, int fd, ssize_t ret)
+static int	find_eol(char **str, char **line, int fd, ssize_t ret)
 {
 	size_t		i;
 	char		*tmp;
@@ -37,7 +37,7 @@ static int		find_eol(char **str, char **line, int fd, ssize_t ret)
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
 	char			buf[BUFF_SIZE + 1];
 	static char		*str[FD_MAX];
@@ -46,8 +46,9 @@ int				get_next_line(const int fd, char **line)
 
 	if (fd > FD_MAX || !line || fd == -1)
 		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while (1)
 	{
+		ret = read(fd, buf, BUFF_SIZE);
 		if (ret == -1)
 			return (-1);
 		buf[ret] = '\0';
@@ -59,7 +60,7 @@ int				get_next_line(const int fd, char **line)
 			free(str[fd]);
 			str[fd] = tmp;
 		}
-		if (ft_strchr(str[fd], '\n'))
+		if (ft_strchr(str[fd], '\n') || ret == 0)
 			break ;
 	}
 	return (find_eol(str, line, fd, ret));

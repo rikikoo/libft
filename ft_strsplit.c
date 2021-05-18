@@ -6,13 +6,13 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:48:03 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/04 14:00:25 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:12:12 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-static int		ft_ptr_counter(char const *s, char c, unsigned int i)
+static int	ft_ptr_counter(char const *s, char c, unsigned int i)
 {
 	int	j;
 
@@ -30,7 +30,7 @@ static int		ft_ptr_counter(char const *s, char c, unsigned int i)
 	return (j + 1);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -39,7 +39,7 @@ char			**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	start = 0;
-	str_arr = (char**)malloc(sizeof((char*)s) * ft_ptr_counter(s, c, i));
+	str_arr = (char **)malloc(sizeof(char *) * ft_ptr_counter(s, c, i));
 	j = 0;
 	while (s[i] != '\0')
 	{

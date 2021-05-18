@@ -6,35 +6,36 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 20:26:47 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 16:56:58 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:46:07 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t		i;
-	char		tmp[len + 1];
+	size_t	i;
+	char	*tmp;
 
 	i = 0;
 	if ((!dst && !src) || !len)
 		return (dst);
 	if (len > 32767)
 		return (dst);
-	else
+	tmp = (char *)malloc(sizeof(char) * len);
+	if (!tmp)
+		return (dst);
+	while (i < len)
 	{
-		while (i < len)
-		{
-			tmp[i] = ((char*)src)[i];
-			i++;
-		}
-		i = 0;
-		while (i < len)
-		{
-			((char*)dst)[i] = tmp[i];
-			i++;
-		}
+		tmp[i] = ((char *)src)[i];
+		i++;
 	}
-	return ((char*)dst);
+	i = 0;
+	while (i < len)
+	{
+		((char *)dst)[i] = tmp[i];
+		i++;
+	}
+	free(tmp);
+	return ((char *)dst);
 }

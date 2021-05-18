@@ -6,12 +6,16 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 12:16:11 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 17:16:50 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:59:21 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
+/*
+** Trims leading and trailing whitespace from the given string,
+** allocates new memory for the trimmed string and returns it.
+*/
 char	*ft_strtrim(char const *s)
 {
 	unsigned int		i;

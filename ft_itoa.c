@@ -6,13 +6,13 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 16:38:35 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 18:54:33 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 17:55:25 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-static char		*ft_positive(char *str, int len, int n)
+static char	*positive(char *str, int len, int n)
 {
 	int		nb;
 
@@ -28,7 +28,7 @@ static char		*ft_positive(char *str, int len, int n)
 	return (str);
 }
 
-static char		*ft_negative(char *str, int len, int n)
+static char	*negative(char *str, int len, int n)
 {
 	int		nb;
 
@@ -50,7 +50,7 @@ static char		*ft_negative(char *str, int len, int n)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
@@ -64,10 +64,10 @@ char			*ft_itoa(int n)
 		len++;
 	}
 	if (n < 0 && n > -2147483648)
-		str = ft_negative(ft_strnew(len + 1), len, n);
+		str = negative(ft_strnew(len + 1), len, n);
 	else if (n == -2147483648)
-		str = ft_negative(ft_strnew(len + 3), len, n);
+		str = negative(ft_strnew(len + 3), len, n);
 	else
-		str = ft_positive(ft_strnew(len), len, n);
+		str = positive(ft_strnew(len), len, n);
 	return (str);
 }

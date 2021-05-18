@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkyttala <rkyttala@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:36:35 by rkyttala          #+#    #+#             */
-/*   Updated: 2020/09/03 15:48:14 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:55:46 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 /*
 **	round_wholes:
@@ -21,7 +21,7 @@
 **	4) frees original string
 */
 
-static char		*round_wholes(char **str)
+static char	*round_wholes(char **str)
 {
 	char	*rounded;
 
@@ -38,7 +38,7 @@ static char		*round_wholes(char **str)
 **	  originally an integer.
 */
 
-static char		*f_roundup(char *str)
+static char	*f_roundup(char *str)
 {
 	int		i;
 
@@ -75,7 +75,7 @@ static char		*f_roundup(char *str)
 **	- Returns the newly formatted decimal part
 */
 
-static char		*format_decimals(char *decimals)
+static char	*format_decimals(char *decimals)
 {
 	int		len;
 
@@ -103,7 +103,7 @@ static char		*format_decimals(char *decimals)
 **	- joins them together, formatted properly and returns it
 */
 
-static char		*split_n_join(long double nb, int prec, int int_count, int olt1)
+static char	*split_n_join(long double nb, int prec, int int_count, int olt1)
 {
 	char				*str;
 	char				*ints;
@@ -143,7 +143,7 @@ static char		*split_n_join(long double nb, int prec, int int_count, int olt1)
 **	- returns the processed (rounded up) string.
 */
 
-char			*ft_ftoa(long double nb, int precision)
+char	*ft_ftoa(long double nb, int precision)
 {
 	char			sign;
 	char			*str;

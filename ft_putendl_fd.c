@@ -6,11 +6,11 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 20:02:49 by rkyttala          #+#    #+#             */
-/*   Updated: 2019/11/06 17:33:56 by rkyttala         ###   ########.fr       */
+/*   Updated: 2020/09/07 19:14:26 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putendl_fd(char const *s, int fd)
 {
