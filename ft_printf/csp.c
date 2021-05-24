@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 17:08:41 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:22:51 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 18:10:22 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	print_char(t_specs *specs, va_list argp)
 	{
 		if (specs->minus)
 			ft_putchar(c);
-		ft_putpad(specs->width - 1, specs->zero ? '0' : ' ');
+		if (specs->zero)
+			ft_putpad(specs->width - 1, '0');
+		else
+			ft_putpad(specs->width - 1, ' ');
 		if (!specs->minus)
 			ft_putchar(c);
 		return (specs->width);
@@ -39,7 +42,10 @@ int	print_string(t_specs *specs, char *str, int len)
 	{
 		if (specs->minus)
 			ft_putnstr(str, len);
-		ft_putpad(specs->width - len, specs->zero ? '0' : ' ');
+		if (specs->zero)
+			ft_putpad(specs->width - len, '0');
+		else
+			ft_putpad(specs->width - len, ' ');
 		if (!specs->minus)
 			ft_putnstr(str, len);
 		return (specs->width);
@@ -61,6 +67,20 @@ int	prep_string(t_specs *specs, va_list argp)
 		return (print_string(specs, str, specs->precision));
 	else
 		return (print_string(specs, str, len));
+}
+
+void	prep_pointer(t_specs *specs, int len, char *str)
+{
+	if (specs->minus)
+	{
+		ft_putstr(str);
+		ft_putpad(specs->width - len, ' ');
+	}
+	else
+	{
+		ft_putpad(specs->width - len, ' ');
+		ft_putstr(str);
+	}
 }
 
 int	print_pointer(t_specs *specs, va_list argp)
@@ -86,8 +106,7 @@ int	print_pointer(t_specs *specs, va_list argp)
 		free(str);
 		return (len);
 	}
-	specs->minus ? ft_putstr(str) : ft_putpad(specs->width - len, ' ');
-	!(specs->minus) ? ft_putstr(str) : ft_putpad(specs->width - len, ' ');
+	prep_pointer(specs, len, str);
 	free(str);
 	return (specs->width);
 }

@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:09:42 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:08:54 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 18:03:23 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,27 @@ int	o_output_l(t_specs *specs, char *str, int len)
 	}
 	if (specs->width > len)
 		ft_putpad(specs->width - len, ' ');
-	return (len >= specs->width ? len : specs->width);
+	if (specs->width > len)
+		len = specs->width;
+	return (len);
+}
+
+void	octal_padding(t_specs *specs, int len)
+{
+	if (len >= specs->precision)
+	{
+		if (specs->zero)
+			ft_putpad(specs->width - len, '0');
+		else
+			ft_putpad(specs->width - len, ' ');
+	}
+	else
+	{
+		if (specs->zero)
+			ft_putpad(specs->width - specs->precision, '0');
+		else
+			ft_putpad(specs->width - specs->precision, ' ');
+	}
 }
 
 int	o_output_r(t_specs *specs, char *str, int len)
@@ -40,8 +60,7 @@ int	o_output_r(t_specs *specs, char *str, int len)
 		return (len);
 	}
 	if (specs->width > specs->precision && specs->width > len)
-		ft_putpad(specs->width - (len >= specs->precision ? \
-			len : specs->precision), specs->zero ? '0' : ' ');
+		octal_padding(specs, len);
 	if (specs->precision <= len)
 		ft_putstr(str);
 	else
@@ -50,7 +69,9 @@ int	o_output_r(t_specs *specs, char *str, int len)
 		ft_putstr(str);
 		len = specs->precision;
 	}
-	return (len >= specs->width ? len : specs->width);
+	if (specs->width > len)
+		len = specs->width;
+	return (len);
 }
 
 int	to_octal(t_specs *specs, va_list argp)
@@ -59,7 +80,8 @@ int	to_octal(t_specs *specs, va_list argp)
 	int					len;
 	char				*str;
 
-	if (!(nb = oux_length(specs, argp)) && specs->precision == 0)
+	nb = oux_length(specs, argp);
+	if (!nb && specs->precision == 0)
 		return (oux_zeroprecision(specs));
 	if (nb == 0)
 		specs->pound = 0;

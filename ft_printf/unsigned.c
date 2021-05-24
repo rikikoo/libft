@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 22:41:46 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:15:54 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 16:14:30 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	u_output(t_specs *specs, char *str, int len)
 	}
 	if (specs->width > len)
 	{
-		ft_putpad(specs->width - len, specs->zero ? '0' : ' ');
+		if (specs->zero)
+			ft_putpad(specs->width - len, '0');
+		else
+			ft_putpad(specs->width - len, ' ');
 		ft_putstr(str);
 		free(str);
 		return (specs->width);

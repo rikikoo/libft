@@ -6,11 +6,16 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:24:22 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:09:16 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:08:15 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+int	is_signed(t_specs *specs, char sign)
+{
+	return (specs->plus || sign == ' ' || sign == '-');
+}
 
 int	is_validspec(char c)
 {

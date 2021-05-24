@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 19:32:40 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:13:53 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:25:15 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,32 @@ long long	di_length(t_specs *specs, va_list argp)
 	return (nb);
 }
 
-int	is_signed(t_specs *specs, char sign)
+int	x_zerop(t_specs *specs)
 {
-	return (specs->plus || sign == ' ' || sign == '-');
+	if (specs->minus)
+	{
+		if (specs->precision > 1)
+			ft_putpad(specs->precision, '0');
+		else
+			ft_putchar('0');
+	}
+	if (specs->precision == -1)
+		ft_putpad(specs->width - 1, ' ' + (specs->zero * 16));
+	else
+		ft_putpad(specs->width - specs->precision, ' ' + (specs->zero * 16));
+	if (!specs->minus)
+	{
+		if (specs->precision > 1)
+			ft_putpad(specs->precision, '0');
+		else
+			ft_putchar('0');
+	}
+	if (specs->precision > specs->width)
+		return (specs->precision);
+	if (specs->width > 1)
+		return (specs->width);
+	else
+		return (1);
 }
 
 int	oux_zeroprecision(t_specs *specs)
@@ -60,22 +83,13 @@ int	oux_zeroprecision(t_specs *specs)
 		ft_putpad(specs->width - 1, ' ');
 		if (!specs->minus)
 			ft_putchar('0');
-		return (specs->width > 0 ? specs->width : 1);
+		if (specs->width > 0)
+			return (specs->width);
+		else
+			return (1);
 	}
 	if ((specs->type == 'x' || specs->type == 'X') && specs->precision != 0)
-	{
-		if (specs->minus)
-			ft_putpad(specs->precision > 1 ? specs->precision : 1, '0');
-		if (specs->precision == -1)
-			ft_putpad(specs->width - 1, specs->zero ? '0' : ' ');
-		else
-			ft_putpad(specs->width - specs->precision, specs->zero ? '0' : ' ');
-		if (!specs->minus)
-			ft_putpad(specs->precision > 1 ? specs->precision : 1, '0');
-		if (specs->precision > specs->width)
-			return (specs->precision > 1 ? specs->precision : 1);
-		return (specs->width > 1 ? specs->width : 1);
-	}
+		return (x_zerop(specs));
 	ft_putpad(specs->width, ' ');
 	return (specs->width);
 }
@@ -86,7 +100,10 @@ int	print_percent(t_specs *specs)
 	{
 		if (specs->minus)
 			ft_putchar('%');
-		ft_putpad(specs->width - 1, specs->zero ? '0' : ' ');
+		if (specs->zero)
+			ft_putpad(specs->width - 1, '0');
+		else
+			ft_putpad(specs->width - 1, ' ');
 		if (!specs->minus)
 			ft_putchar('%');
 		return (specs->width);

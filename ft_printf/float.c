@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:01:38 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:17:59 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 18:50:28 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	f_output_l(t_specs *specs, char *str, char sign, int len)
 	if (is_signed(specs, sign))
 	{
 		ft_putchar(sign);
-		len += (specs->pound && specs->precision == 0) ? 2 : 1;
+		if (specs->pound && specs->precision == 0)
+			len += 2;
+		else
+			len += 1;
 	}
 	if (specs->width > len)
 	{
@@ -43,7 +46,10 @@ int	f_output_r(t_specs *specs, char *str, char sign, int len)
 	{
 		if (is_signed(specs, sign) && specs->zero)
 			ft_putchar(sign);
-		ft_putpad(specs->width - len, specs->zero ? '0' : ' ');
+		if (specs->zero)
+			ft_putpad(specs->width - len, '0');
+		else
+			ft_putpad(specs->width - len, ' ');
 		if (is_signed(specs, sign) && !specs->zero)
 			ft_putchar(sign);
 		ft_putstr(str);
@@ -85,18 +91,20 @@ int	to_float(t_specs *specs, va_list argp)
 	char		sign;
 	int			ret;
 
-	nb = specs->long_dbl ? va_arg(argp, long double) : va_arg(argp, double);
+	if (specs->long_dbl)
+		nb = va_arg(argp, long double);
+	else
+		nb = va_arg(argp, double);
 	if (nb == 0.0 && specs->precision > 0)
 		str = f_zero(specs->precision);
 	else
 		str = ft_ftoa(nb, specs->precision);
+	sign = '+' - (specs->space * 11);
 	if (nb < 0)
 	{
 		sign = '-';
 		str = ft_memmove(str, str + 1, ft_strlen(str));
 	}
-	else
-		sign = specs->space ? ' ' : '+';
 	if (specs->minus)
 		ret = f_output_l(specs, str, sign, ft_strlen(str));
 	else

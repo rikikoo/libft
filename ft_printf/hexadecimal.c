@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 22:29:59 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:13:04 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 18:38:33 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,52 @@
 
 int	x_output_l(t_specs *specs, char *str, int len, char *pref)
 {
-	int	ret;
-
 	if (specs->precision == -1)
 	{
 		if (specs->pound)
 			ft_putstr(pref);
 		ft_putstr(str);
-		ft_putpad(specs->width - (specs->pound ? len + 2 : len), ' ');
-		ret = specs->width;
+		ft_putpad(specs->width - (specs->pound * 2 + len), ' ');
+		return (specs->width);
 	}
+	if (specs->pound)
+		ft_putstr(pref);
+	if (specs->precision > len)
+		ft_putpad(specs->precision - len, '0');
+	ft_putstr(str);
+	if (specs->precision > len)
+		ft_putpad(specs->width - specs->precision - (specs->pound * 2), ' ');
 	else
-	{
-		if (specs->pound)
-			ft_putstr(pref);
-		if (specs->precision > len)
-			ft_putpad(specs->precision - len, '0');
-		ft_putstr(str);
-		ft_putpad((specs->precision > len ? specs->width - specs->precision - \
-			(specs->pound * 2) : specs->width - len - (specs->pound * 2)), ' ');
-		if (specs->width >= specs->precision + (specs->pound ? 2 : 0))
-			ret = specs->width;
-		else
-			ret = specs->precision + (specs->pound ? 2 : 0);
-	}
-	return (ret);
+		ft_putpad(specs->width - len - (specs->pound * 2), ' ');
+	if (specs->width >= specs->precision + (specs->pound * 2))
+		return (specs->width);
+	else
+		return (specs->precision + (specs->pound * 2));
 }
 
 int	x_output_r(t_specs *specs, char *str, int len, char *pref)
 {
-	int	ret;
-
 	if (specs->zero && specs->precision == -1)
 	{
 		if (specs->pound)
 			ft_putstr(pref);
-		ft_putpad(specs->width - (specs->pound ? len + 2 : len), '0');
+		ft_putpad(specs->width - (specs->pound * 2 + len), '0');
 		ft_putstr(str);
-		ret = specs->width;
+		return (specs->width);
 	}
+	if (specs->precision > len)
+		ft_putpad(specs->width - specs->precision - (specs->pound * 2), ' ');
 	else
-	{
-		ft_putpad(specs->precision > len ? specs->width - specs->precision - \
-			(specs->pound * 2) : specs->width - len - (specs->pound * 2), ' ');
-		if (specs->pound)
-			ft_putstr(pref);
-		if (specs->precision > len)
-			ft_putpad(specs->precision - len, '0');
-		ft_putstr(str);
-		if (specs->width >= specs->precision + (specs->pound ? 2 : 0))
-			ret = specs->width;
-		else
-			ret = specs->precision + (specs->pound ? 2 : 0);
-	}
-	return (ret);
+		ft_putpad(specs->width - len - (specs->pound * 2), ' ');
+	if (specs->pound)
+		ft_putstr(pref);
+	if (specs->precision > len)
+		ft_putpad(specs->precision - len, '0');
+	ft_putstr(str);
+	if (specs->width >= specs->precision + (specs->pound * 2))
+		return (specs->width);
+	else
+		return (specs->precision + (specs->pound * 2));
 }
 
 int	x_output(t_specs *specs, char *str, int len, char *pref)
@@ -80,7 +72,10 @@ int	x_output(t_specs *specs, char *str, int len, char *pref)
 			ft_putstr(pref);
 		ft_putpad(specs->precision - len, '0');
 		ft_putstr(str);
-		ret = specs->precision + (specs->pound ? 2 : 0);
+		if (specs->pound)
+			ret = specs->precision + 2;
+		else
+			ret = specs->precision;
 	}
 	else
 	{

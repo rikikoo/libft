@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:36:35 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 16:55:46 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 17:07:42 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,9 @@ static char	*split_n_join(long double nb, int prec, int int_count, int olt1)
 	char				*final;
 	int					orig_prec;
 
-	orig_prec = prec;
-	prec = prec < 0 ? 7 : prec + 1;
+	orig_prec = prec - 1;
+	if (orig_prec < 0)
+		prec = 7;
 	while (prec != 0)
 	{
 		nb *= 10.0;
@@ -150,9 +151,12 @@ char	*ft_ftoa(long double nb, int precision)
 	long double		tmp;
 	int				int_count;
 
-	sign = nb < 0 ? '-' : '+';
-	if (sign == '-')
+	sign = '+';
+	if (nb < 0)
+	{
+		sign = '-';
 		nb *= -1.0;
+	}
 	tmp = nb;
 	int_count = 1;
 	while (tmp >= 10.0)
@@ -161,11 +165,10 @@ char	*ft_ftoa(long double nb, int precision)
 		int_count++;
 	}
 	if (nb < 1.0)
-	{
-		nb = nb + 1.0;
-		str = split_n_join(nb, precision, int_count, 1);
-	}
+		str = split_n_join(nb + 1.0, precision + 1, int_count, 1);
 	else
-		str = split_n_join(nb, precision, int_count, 0);
-	return (sign == '-' ? ft_strjoin_free(ft_strdup("-"), str) : str);
+		str = split_n_join(nb, precision + 1, int_count, 0);
+	if (sign == '-')
+		str = ft_strjoin_free(ft_strdup("-"), str);
+	return (str);
 }

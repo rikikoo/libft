@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 19:10:23 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 18:05:17 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/05/24 17:41:26 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	di_output_l(t_specs *specs, char *str, int len, char sign)
 		if (is_signed(specs, sign))
 			ft_putchar(sign);
 		ft_putstr(str);
-		ft_putpad(specs->width - (is_signed(specs, sign) ? len + 1 : len), ' ');
+		ft_putpad(specs->width - (is_signed(specs, sign) + len), ' ');
 		return (specs->width);
 	}
 	if (is_signed(specs, sign))
@@ -29,12 +29,11 @@ int	di_output_l(t_specs *specs, char *str, int len, char sign)
 	ft_putstr(str);
 	if (specs->precision > len)
 		len = specs->precision;
-	ft_putpad((is_signed(specs, sign) ? specs->width - len - 1 \
-		: specs->width - len), ' ');
-	if (specs->width >= specs->precision + (is_signed(specs, sign) ? 1 : 0))
+	ft_putpad(specs->width - len - is_signed(specs, sign), ' ');
+	if (specs->width >= specs->precision + is_signed(specs, sign))
 		return (specs->width);
 	else
-		return (specs->precision + (is_signed(specs, sign) ? 1 : 0));
+		return (specs->precision + is_signed(specs, sign));
 }
 
 int	di_output_r(t_specs *specs, char *str, int len, char sign)
@@ -43,25 +42,24 @@ int	di_output_r(t_specs *specs, char *str, int len, char sign)
 	{
 		if (is_signed(specs, sign))
 			ft_putchar(sign);
-		ft_putpad(specs->width - (is_signed(specs, sign) ? len + 1 : len), '0');
+		ft_putpad(specs->width - (len + is_signed(specs, sign)), '0');
 		ft_putstr(str);
 		return (specs->width);
 	}
 	if (specs->precision > len)
-		ft_putpad(specs->width - (is_signed(specs, sign) ? specs->precision + 1
-		: specs->precision), ' ');
+		ft_putpad(specs->width - (specs->precision + is_signed(specs, sign)), \
+		' ');
 	else
-		ft_putpad(is_signed(specs, sign) ? specs->width - len - 1 \
-		: specs->width - len, ' ');
+		ft_putpad(specs->width - len - is_signed(specs, sign), ' ');
 	if (is_signed(specs, sign))
 		ft_putchar(sign);
 	if (specs->precision > len)
 		ft_putpad(specs->precision - len, '0');
 	ft_putstr(str);
-	if (specs->width >= specs->precision + (is_signed(specs, sign) ? 1 : 0))
+	if (specs->width >= specs->precision + is_signed(specs, sign))
 		return (specs->width);
 	else
-		return (specs->precision + (is_signed(specs, sign) ? 1 : 0));
+		return (specs->precision + is_signed(specs, sign));
 }
 
 int	di_output(t_specs *specs, char *str, int len, char sign)
@@ -74,19 +72,30 @@ int	di_output(t_specs *specs, char *str, int len, char sign)
 			ft_putchar(sign);
 		ft_putpad(specs->precision - len, '0');
 		ft_putstr(str);
-		ret = specs->precision + (is_signed(specs, sign) ? 1 : 0);
+		ret = specs->precision + is_signed(specs, sign);
 	}
 	else
 	{
 		if (is_signed(specs, sign))
 			ft_putchar(sign);
 		ft_putstr(str);
-		if (is_signed(specs, sign))
-			ret = len + 1;
-		else
-			ret = len;
+		ret = len + is_signed(specs, sign);
 	}
 	return (ret);
+}
+
+char	get_sign(int space, long long int *nb)
+{
+	if (*nb < 0)
+	{
+		*nb *= -1;
+		return ('-');
+	}
+	if (space)
+	{
+		return (' ');
+	}
+	return ('+');
 }
 
 int	to_integer(t_specs *specs, va_list argp)
@@ -96,15 +105,14 @@ int	to_integer(t_specs *specs, va_list argp)
 	char			sign;
 	int				len;
 
-	if (!(nb = di_length(specs, argp)) && specs->precision == 0)
+	nb = di_length(specs, argp);
+	if (!nb && specs->precision == 0)
 	{
 		ft_putpad(specs->width, ' ');
 		return (specs->width);
 	}
-	sign = (nb < 0 ? '-' : '+');
-	if (specs->space && sign == '+')
-		sign = ' ';
-	str = ft_itoa_base(sign == '-' ? (nb * -1) : nb, 10, 0);
+	sign = get_sign(specs->space, &nb);
+	str = ft_itoa_base(nb, 10, 0);
 	len = ft_strlen(str);
 	if (specs->width > len && specs->width > specs->precision && specs->minus)
 		len = di_output_l(specs, str, len, sign);
