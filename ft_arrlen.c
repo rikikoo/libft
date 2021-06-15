@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 13:22:25 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 17:51:33 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/06/15 16:24:17 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-int	ft_lstlen(void **lst)
+int	ft_arrlen(void **arr)
 {
 	size_t	i;
 
 	i = 0;
-	while (lst[i] != NULL)
+	while (arr[i] != NULL)
 	{
 		i++;
 	}
