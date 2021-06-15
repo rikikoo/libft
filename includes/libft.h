@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:31:58 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/05/02 17:59:10 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/06/15 16:20:49 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list
 int				ft_atoi(const char *str);
 long long		ft_atoll(const char *str);
 void			ft_bzero(void *s, size_t n);
+int				ft_digits_only(const char *str);
 char			*ft_ftoa(long double nb, int precision);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
