@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:31:58 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/06/15 16:25:08 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/07/25 13:42:05 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ long long		ft_atoll(const char *str);
 void			ft_bzero(void *s, size_t n);
 int				ft_digits_only(const char *str);
 char			*ft_ftoa(long double nb, int precision);
+long			ft_hextol(const unsigned char *str);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
