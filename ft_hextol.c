@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 18:16:02 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/07/25 15:00:21 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/07/25 17:55:18 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static long	convert(unsigned char *hex, int len, int prefix_len)
 
 	ones = tolongint(hex, len - 1, prefix_len);
 	if (ones == -1)
-		return (-1);
+		return (0);
 	sixteens = tolongint(hex, len - 2, prefix_len) * 16;
 	if (sixteens == -1)
-		return (-1);
+		return (0);
 	return (ones + sixteens);
 }
 
@@ -66,7 +66,7 @@ long int	ft_hextol(const unsigned char *str)
 	len = ft_strlen((char *)str);
 	hex = (unsigned char *)malloc(sizeof(char) * len);
 	if (!hex)
-		return (-1);
+		return (0);
 	i = 0;
 	while (i < len)
 	{
