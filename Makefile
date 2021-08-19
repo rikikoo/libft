@@ -6,7 +6,7 @@
 #    By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 11:43:31 by rkyttala          #+#    #+#              #
-#    Updated: 2021/08/18 22:42:31 by rkyttala         ###   ########.fr        #
+#    Updated: 2021/08/19 20:30:35 by rkyttala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -93,9 +93,10 @@ BONUS_SRC = ft_arrlen.c \
 			ft_ftoa.c \
 			ft_hextol.c \
 			ft_itoa_base.c \
+			ft_liberator.c \
 			ft_putpad.c \
 			ft_strjoin_free.c \
-			liberator.c
+			ft_zeros.c
 
 GNL_SRC =	get_next_line.c
 
