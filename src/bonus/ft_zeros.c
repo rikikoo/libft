@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bytes_toint.c                                   :+:      :+:    :+:   */
+/*   ft_zeros.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/02 10:47:28 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/08/02 21:46:55 by rkyttala         ###   ########.fr       */
+/*   Created: 2021/08/19 20:13:37 by rkyttala          #+#    #+#             */
+/*   Updated: 2021/08/19 20:35:58 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** treats the byte pointed to by @bytes as the most significant byte of a
-** series of @n bytes forward.
+** creates a size_t array of size @size and fills it with zeros and returns it
 */
-size_t	ft_bytes_toint(const unsigned char *bytes, int n)
+size_t	*ft_zeros(size_t size)
 {
-	size_t	nbr;
-	int		bits;
+	size_t	*arr;
+	size_t	i;
 
-	if (!bytes || n <= 0 || (unsigned long)n > sizeof(size_t))
-		return (0);
-	nbr = 0;
-	bits = 0;
-	while (--n >= 0)
+	arr = (size_t *)malloc(sizeof(size_t) * size);
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
-		nbr += (size_t)bytes[n] << bits;
-		bits += 8;
+		arr[i] = 0;
+		i++;
 	}
-	return (nbr);
+	return (arr);
 }

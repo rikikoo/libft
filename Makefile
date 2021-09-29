@@ -6,7 +6,7 @@
 #    By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/22 11:43:31 by rkyttala          #+#    #+#              #
-#    Updated: 2021/08/02 18:14:44 by rkyttala         ###   ########.fr        #
+#    Updated: 2021/08/19 20:30:35 by rkyttala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 ARCC = ar
-ARFLAGS = -rc
+ARFLAGS = -rcs
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -93,9 +93,10 @@ BONUS_SRC = ft_arrlen.c \
 			ft_ftoa.c \
 			ft_hextol.c \
 			ft_itoa_base.c \
+			ft_liberator.c \
 			ft_putpad.c \
 			ft_strjoin_free.c \
-			liberator.c
+			ft_zeros.c
 
 GNL_SRC =	get_next_line.c
 
@@ -121,7 +122,7 @@ OBJ_DIRS = $(LIBFT_DIR) $(BONUS_DIR) $(GNL_DIR) $(PF_DIR)
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_NAME))
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-# MAKEFLAGS += --silent
+MAKEFLAGS += --silent
 
 all: $(NAME)
 
@@ -129,11 +130,15 @@ $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 	mkdir -p $(addprefix $(OBJ_PATH), $(OBJ_DIRS))
 
-$(NAME): $(OBJ_PATH)
+$(NAME): message $(OBJS)
 	$(ARCC) $(ARFLAGS) $(NAME) $(OBJS)
+	@echo "$(GRN)$(NAME) compiled successfully$(EOC)"
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
+
+message:
+	@echo "$(GRN)Compiling libft$(EOC)"
 
 clean:
 	rm -f $(OBJS)
@@ -144,3 +149,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+GRN = \033[0;32m
+EOC = \033[0m
+
