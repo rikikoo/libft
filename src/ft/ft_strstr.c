@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rkyttala <rkyttala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:20:36 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/08/02 13:10:50 by rkyttala         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:01:13 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	int		j;
 
 	i = 0;
-	if (needle[i] == '\0')
+	if (!haystack || !needle)
 		return ((char *)haystack);
 	while (haystack[i] != '\0')
 	{
@@ -31,5 +31,5 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:31:58 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/08/19 20:20:32 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:13:54 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strtrim(char const *s);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
-size_t		*ft_zeros(size_t size);
 int			get_next_line(const int fd, char **line);
 
 #endif

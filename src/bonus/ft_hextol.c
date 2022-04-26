@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 18:16:02 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/08/19 20:13:18 by rkyttala         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:06:02 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static long	convert(unsigned char *hex, int len, int prefix_len)
 }
 
 /*
-** converts the passed hexadecimal string to a long integer and returns it
+** converts the passed hexadecimal value to a long integer and returns it
 **
 ** can handle hex values with or without the prefix "0x" (or "0X").
 ** returns 0 if the string has non-hex digits (anything else than [0-9a-fA-F]).
