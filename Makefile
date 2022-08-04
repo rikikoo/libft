@@ -87,7 +87,8 @@ LIBFT_SRC =	ft_atoi.c \
 			ft_tolower.c \
 			ft_toupper.c
 
-BONUS_SRC = ft_arrlen.c \
+BONUS_SRC = ft_abs.c \
+			ft_arrlen.c \
 			ft_atoll.c \
 			ft_bytes_toint.c \
 			ft_digits_only.c \
