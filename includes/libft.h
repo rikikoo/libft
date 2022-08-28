@@ -6,7 +6,7 @@
 /*   By: rkyttala <rkyttala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:31:58 by rkyttala          #+#    #+#             */
-/*   Updated: 2021/08/02 13:13:54 by rkyttala         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:56:42 by rkyttala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int			ft_abs(int n);
 int			ft_arrlen(void **arr);
 int			ft_atoi(const char *str);
 long long	ft_atoll(const char *str);
