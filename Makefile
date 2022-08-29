@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 ARCC = ar
 ARFLAGS = -rcs
+RAN = ranlib
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -134,6 +135,7 @@ $(OBJ_PATH):
 $(NAME): message $(OBJS)
 	$(ARCC) $(ARFLAGS) $(NAME) $(OBJS)
 	@echo "$(GRN)$(NAME) compiled successfully$(EOC)"
+	$(RAN) $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
